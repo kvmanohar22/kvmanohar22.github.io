@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManAm</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #ff4d4d;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            font-size: 2rem;
+        }
+
+        .time {
+            margin: 0 10px;
+            flex: 1;
+        }
+
+        .time span {
+            display: block;
+            font-size: 5rem;
+            color: #ff6666;
+        }
+
+        .label {
+            font-size: 1.5rem;
+            color: #993333;
+        }
+
+        .hearts {
+            font-size: 2rem;
+            color: #ff6666;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: #4d0000;
+        }
+
+        .rings {
+            font-size: 2.5rem;
+            color: #ff8080;
+        }
+
+        /* Styling for the "Big Day Has Arrived" message */
+        .arrived-message {
+            display: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #ff4d4d;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hearts">💖💞💖</div>
+        <h1>Manam</h1>
+        <div class="countdown">
+            <div class="time">
+                <span id="days">0</span>
+                <div class="label">Days</div>
+            </div>
+            <div class="time">
+                <span id="hours">00</span>
+                <div class="label">Hours</div>
+            </div>
+            <div class="time">
+                <span id="minutes">00</span>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time">
+                <span id="seconds">00</span>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+        <div class="arrived-message" id="arrivedMessage">The Big Day Has Arrived!</div>
+        <footer>
+            💍 Together forever 💍
+        </footer>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 7, 2024 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function () {
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the countdown date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the respective elements
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = ("0" + hours).slice(-2);
+            document.getElementById("minutes").innerHTML = ("0" + minutes).slice(-2);
+            document.getElementById("seconds").innerHTML = ("0" + seconds).slice(-2);
+
+            // If the countdown is finished, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".countdown").style.display = "none";
+                document.getElementById("arrivedMessage").style.display = "block";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
